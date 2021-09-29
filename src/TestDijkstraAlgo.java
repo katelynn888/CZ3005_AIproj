@@ -51,11 +51,9 @@ public class TestDijkstraAlgo {
             
             // adding nodes
             for (int i = 1; i <= jsonObj_coord.size(); i++) {
-//            for (int i = 0; i <= 10; i++) {
-                Vertex location = new Vertex("Node_" + i, "Node_" + i);
+                Vertex location = new Vertex(String.valueOf(i), String.valueOf(i));
                 nodes.add(location);
             }
-            
             
             
 //            addLane("Edge_0", 0, 1, 85);
@@ -70,11 +68,11 @@ public class TestDijkstraAlgo {
 //            addLane("Edge_9", 4, 9, 502);
 //            addLane("Edge_10", 9, 10, 40);
 //            addLane("Edge_11", 1, 10, 600);
+
             
-            
-            
+            int k=1;
             for (int i=1; i<= jsonObj_coord.size(); i++) {
-            	int k=1;
+            	
             	String node = String.format("%d", i);
             	JSONArray connectedNodes = (JSONArray) jsonObj.get(node);
             	
@@ -91,7 +89,6 @@ public class TestDijkstraAlgo {
                 	
                 	
                 	System.out.println(connection + " " + distance);
-                	
                 	addLane("Edge_" + k, i, dest, distance, cost);
                 	k++;
 
@@ -99,7 +96,7 @@ public class TestDijkstraAlgo {
                 
             }
             
-            
+                     
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,24 +107,33 @@ public class TestDijkstraAlgo {
         // from location 1 to 2
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+        
+        System.out.println("Done2");
+        
         dijkstra.execute(nodes.get(0));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(49));
+        
+        System.out.println("Done3");
 
         double shortestDist = 0;
 //        double energyCost = 0;
+        
+        System.out.println("Shortest path: ");
         for (Vertex vertex : path) {
             System.out.print(vertex + " -> "); 
             shortestDist = dijkstra.getShortestDistance(vertex);
             
         }
         
-        System.out.println(shortestDist);
+        System.out.println("Shortest Distance: " + shortestDist);
         
     }
 
     private static void addLane(String laneId, int sourceLocNo, int destLocNo,
             double distance, double cost) {
-        Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), distance, cost );
+    	
+        Edge lane = new Edge(laneId, nodes.get(sourceLocNo-1), nodes.get(destLocNo-1), distance, cost );
         edges.add(lane);
+        
     }
 }
