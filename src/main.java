@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -15,18 +16,19 @@ public class main {
 	public static void main(String args[]) throws IOException {
 
 		// reading map network file & creating a graph
-		String filepath = "G.json";
+		String graph = "G.json";
+		String dist = "Dist.json";
 		JSONParser parser = new JSONParser();
 		
 		try {     
-            Object obj = parser.parse(new FileReader(filepath));
+            Object obj = parser.parse(new FileReader(dist));
             
-            JSONObject jsonObj = (JSONObject) obj;
+            JSONValue jsonObj = (JSONValue) obj;
             
             for (int i=1; i<=5; i++) {
-            	String node = String.format("%d", i);
-            	JSONArray One = (JSONArray) jsonObj.get(node);
-                System.out.println(One);
+            	//int node = String.format("%d", i);
+            	;
+                System.out.println(jsonObj);
             }
             
             
