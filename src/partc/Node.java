@@ -21,6 +21,7 @@ public class Node implements Comparable<Node> {
     public double h; 
     public double x; 
     public double y;
+    public double energy;
 
     Node(double x, double y){
           this.x = x;
@@ -35,17 +36,19 @@ public class Node implements Comparable<Node> {
     }
 
     public static class Edge {
-          Edge(int weight, Node node){
+          Edge(int weight, Node node, int energy){
                 this.weight = weight;
                 this.node = node;
+                this.energy = energy;
           }
 
           public int weight;
           public Node node;
+          public int energy;
     }
 
-    public void addBranch(int weight, Node node){
-          Edge newEdge = new Edge(weight, node);
+    public void addBranch(int weight, Node node, int energy){
+          Edge newEdge = new Edge(weight, node, energy);
           neighbors.add(newEdge);
     }
   
