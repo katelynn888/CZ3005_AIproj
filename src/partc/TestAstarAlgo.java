@@ -42,8 +42,8 @@ public class TestAstarAlgo{
 
 	    Node res = AstarAlgo.aStar(head, target);
 	    AstarAlgo.printPath(res);
+	    AstarAlgo.getTotalDistance(res);
 	    AstarAlgo.getTotalCost(res);
-	    AstarAlgo.getTotalEnergy(res);
 	}
         
 }
