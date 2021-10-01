@@ -2,11 +2,11 @@ package partc;
 
 import java.util.ArrayList;
 
+
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import algo.Node;
 
 public class AstarAlgo {
 
@@ -29,7 +29,7 @@ public class AstarAlgo {
 	            Node m = edge.node;
 	            double totalWeight = n.g + edge.weight;
 	            double totalEnergy = n.energy;
-	            System.out.println(totalEnergy);
+	            //System.out.println(totalEnergy);
 	            
 	            if(!openList.contains(m) && !closedList.contains(m) && totalEnergy < 3000){
 	                //  n is the current and m is the next node
@@ -38,7 +38,7 @@ public class AstarAlgo {
 	                m.f = m.g + m.calculateHeuristic(target);
 	                totalEnergy += edge.energy;
 	                m.energy = totalEnergy;
-	                System.out.println(m.energy);
+	                //System.out.println(m.energy);
 
  
 	                openList.add(m);
@@ -49,7 +49,7 @@ public class AstarAlgo {
 	                    m.f = m.g + m.calculateHeuristic(target);
 	                    totalEnergy += edge.energy;
 		                m.energy = totalEnergy;
-		                System.out.println(m.energy);
+		                //System.out.println(m.energy);
 
 	                    if(closedList.contains(m)){
 	                        closedList.remove(m);
