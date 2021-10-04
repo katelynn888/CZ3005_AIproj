@@ -85,7 +85,7 @@ public class TestDijkstraAlgo {
                 	double distance = Double.valueOf(distStr);
                 	double cost = Double.valueOf(costStr);
                 	
-                	int dest = Integer.valueOf(connectedNodes.get(j).toString());
+                	int dest = Integer.valueOf(connectedNodes.get(j).toString());   
                 	
                 	
                 	System.out.println(connection + " " + distance);
