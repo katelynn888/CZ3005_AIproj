@@ -29,8 +29,8 @@ public class Graph {
 		this.edges.put(source, dest);
 		this.edges.put(dest, source);
 		this.distance.put(source+","+dest, distance);
-		this.distance.put(dest+","+source, distance);
+		//this.distance.put(dest+","+source, distance);
 		this.costs.put(source+","+dest, energy);
-		this.costs.put(dest+","+source, energy);
+		//this.costs.put(dest+","+source, energy);
 	}
 }

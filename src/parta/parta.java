@@ -34,12 +34,12 @@ public class parta {
 				}
 			}
 			
-			if (curNode == "") {
+			if (curNode.equals("")) {
 				System.out.println("No path found");
 				return;
 			}
 			
-			if (curNode == end) {
+			if (curNode.equals(end)) {
 				shortestDist = pathCost.get(curNode);
 				totalEnergy = energyCost.get(curNode);
 				
@@ -59,7 +59,7 @@ public class parta {
 	            	}
 	            	else System.out.print(i);
 	            }
-	                
+	            System.out.println();    
 	            System.out.println("Shortest distance: " + shortestDist);
 	            System.out.println("Total energy cost: " + totalEnergy);
 	            return;
@@ -73,14 +73,14 @@ public class parta {
 				
 				if (!unvisited.contains(nodeStr) && !visited.contains(nodeStr)) {
 					
-					System.out.println(nodeStr +" -> " + curNode);
-					System.out.println(energyCost.get(curNode));
-					System.out.println(graph.getCosts().get(nodeStr+","+curNode));
+					//System.out.println(nodeStr +" -> " + curNode);
+					//System.out.println(energyCost.get(curNode));
+					//System.out.println(graph.getCosts().get(nodeStr+","+curNode));
 //					System.out.println(graph.getCosts().get("1357,1363"));
 					
 					
-					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(nodeStr+","+curNode);
-					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(nodeStr+","+curNode);
+					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
+					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
 					
 					energyCost.put(nodeStr, cumulatedEnergy);
 					unvisited.add(nodeStr);
@@ -90,8 +90,8 @@ public class parta {
 					
 				} 
 				else {
-					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(nodeStr+","+curNode);
-					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(nodeStr+","+curNode);
+					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
+					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
 					if (pathCost.get(nodeStr) > cumulatedDist) {
 						pathCost.put(nodeStr, cumulatedDist);
 						energyCost.put(nodeStr, cumulatedEnergy);
@@ -112,7 +112,7 @@ public class parta {
 			
 		}
 		
-		System.out.println(graph.getCosts().get("1356,1276"));
+		//System.out.println(graph.getCosts().get("1356,1276"));
 		System.out.println("No path found");
 		return;
 	}

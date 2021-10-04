@@ -80,7 +80,7 @@ public class main {
 	                
 	            }
 	            
-	            System.out.println(graph.getEdges().get(1));
+	            //System.out.println(graph.getEdges().get(1));
 	            
 	            parta.partA("1", "50", graph, jsonObj);
 	            
