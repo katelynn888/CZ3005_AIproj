@@ -88,17 +88,17 @@ public class main {
 			// Running the programs
 
 			// UCS
-			System.out.println("Part A:");
+			System.out.println("Task 1:");
 			parta.partA(start, target, graph, jsonObj);
 			System.out.println("\n");
 
 			// UCS with energy constraint
-			System.out.println("Part B:");
+			System.out.println("Task 2:");
 			partb.partB(start, target, graph, jsonObj);
 			System.out.println("\n");
 
 			// A-Star Search
-			System.out.println("Part C:");
+			System.out.println("Task 3:");
 			partc.partC(start, target, graph, jsonObj);
 			System.out.println("\n");
 
