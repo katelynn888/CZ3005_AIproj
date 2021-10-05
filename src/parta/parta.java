@@ -45,7 +45,7 @@ public class parta {
 			String curNode = "";
 			
 			for (String node : unvisited) {
-				if (curNode == "" || pathCost.get(node) < pathCost.get(curNode)) {
+				if (curNode.equals("") || pathCost.get(node) < pathCost.get(curNode)) {
 					curNode = node;
 				}
 			}
@@ -92,7 +92,7 @@ public class parta {
 			// Get array of neighbour nodes of current node
 			JSONArray connectedNodes = (JSONArray) jsonObj.get(curNode);
 			
-			// For each node in the neighbour node array, we check whether it is completely unvisited
+			// For each node in the neighbour node array, we check whether it is unexplored
 			for (Object node : connectedNodes) {
 				String nodeStr = node.toString();
 				
