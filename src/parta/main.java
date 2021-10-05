@@ -55,9 +55,9 @@ public class main {
 	                }
 	                
 	            }
-	            System.out.println("Part A:");
+	            System.out.println("Part A :");
 	            parta.partA("1", "50", graph, jsonObj);
-	            System.out.println("Part B:");
+	            System.out.println("Part B :");
 	            partb.partB("1", "50", graph, jsonObj);
 	            
 	        } catch (IOException e) {
