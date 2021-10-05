@@ -52,10 +52,11 @@ public class main {
 	                }
 	                
 	            }
-	            System.out.println("Part A :");
-	            parta.partA("1", "50", graph, jsonObj);
-	            System.out.println("Part B :");
-	            partb.partB("1", "50", graph, jsonObj);
+	            //System.out.println("Part A :");
+	            //parta.partA("1", "50", graph, jsonObj);
+	            //System.out.println("Part B :");
+	            //partb.partB("1", "50", graph, jsonObj);
+	            partc.partC("1", "50", graph, jsonObj);
 	            
 	        } catch (IOException e) {
 	            e.printStackTrace();

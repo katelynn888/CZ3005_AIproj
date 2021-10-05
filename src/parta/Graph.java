@@ -30,6 +30,9 @@ public class Graph {
 	public Hashtable<String, Double> getCosts() {
 		return costs;
 	}
+	public Hashtable<String, Double> getHeuristic() {
+		return heuristic;
+	}
 
 	public void addEdge(String source, String dest, double distance, double energy) {
 		this.edges.put(source, dest);
