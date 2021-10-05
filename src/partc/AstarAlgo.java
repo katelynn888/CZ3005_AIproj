@@ -25,8 +25,8 @@ public class AstarAlgo {
 
 	        for(Node.Edge edge : n.neighbors){
 	            Node m = edge.node;
-	            double totalWeight = n.g + edge.weight;
-	            double totalCost = n.cost;
+	            double totalWeight = n.g + edge.distance;
+	            double totalCost = n.energyCost;
 	            //System.out.println(totalCost;
 	            
 	            if(!openList.contains(m) && !closedList.contains(m) && totalCost < 3000){
@@ -34,8 +34,8 @@ public class AstarAlgo {
 	            	m.parent = n;
 	                m.g = totalWeight;
 	                m.f = m.g + m.calculateHeuristic(target);
-	                totalCost += edge.cost;
-	                m.cost = totalCost;
+	                totalCost += edge.energyCost;
+	                m.energyCost = totalCost;
 	                //System.out.println(m.cost);
 
  
@@ -45,8 +45,8 @@ public class AstarAlgo {
 	                    m.parent = n;
 	                    m.g = totalWeight;
 	                    m.f = m.g + m.calculateHeuristic(target);
-	                    totalCost += edge.cost;
-		                m.cost = totalCost;
+	                    totalCost += edge.energyCost;
+		                m.energyCost = totalCost;
 		                //System.out.println(m.cost);
 
 	                    if(closedList.contains(m)){
@@ -82,7 +82,7 @@ public class AstarAlgo {
 	
 	public static void getTotalCost(Node target) {
 		
-		System.out.println("The total energy cost: "+ target.cost);
+		System.out.println("The total energy cost: "+ target.energyCost);
 	}
 	
 	public static void printPath(Node target){

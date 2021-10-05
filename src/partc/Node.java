@@ -8,20 +8,18 @@ public class Node implements Comparable<Node> {
     // Id for readability of result purposes
     private static int idCounter = 0;
     public int id;
-
-    // Parent in the path
     public Node parent = null;
-
     public List<Edge> neighbors;
 
     // Evaluation functions
-    public double f = Double.MAX_VALUE;
-    public double g = Double.MAX_VALUE;
-
-    public double h; 
+    public double f = Double.MAX_VALUE; //cumulative total cost = cumulative distance + strline dist
+    public double g = Double.MAX_VALUE; //cumulative distance 
+    public double h; //str line distance
+    public double energyCost; // cumulative energy cost
+    
+    // Coordinates
     public double x; 
     public double y;
-    public double cost;
 
     Node(double x, double y){
           this.x = x;
@@ -36,19 +34,21 @@ public class Node implements Comparable<Node> {
     }
 
     public static class Edge {
-          Edge(int weight, Node node, double cost){
-                this.weight = weight;
-                this.node = node;
-                this.cost = cost;
-          }
+    	public Node node;
+    	public double distance;
+        public double energyCost;
+        
+        Edge(Node node, double distance, double energyCost){                
+        	  this.node = node;
+        	  this.distance = distance;
+              this.energyCost = energyCost;
+        }
 
-          public int weight;
-          public Node node;
-          public double cost;
+          
     }
 
-    public void addBranch(int weight, Node node, double energy){
-          Edge newEdge = new Edge(weight, node, energy);
+    public void addBranch(Node node, double distance, double energy){
+          Edge newEdge = new Edge(node, distance, energy);
           neighbors.add(newEdge);
     }
   
