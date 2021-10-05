@@ -48,12 +48,12 @@ public class main {
 			int[] targetCoord = { targetX, targetY };
 
 			for (int i = 1; i <= jsonObj_coord.size(); i++) {
-				
+
 				String node = String.format("%d", i);
-				
+
 				// Getting array of neighbour nodes of current node
 				JSONArray connectedNodes = (JSONArray) jsonObj.get(node);
-				
+
 				// Getting node coordinate of current node
 				JSONArray nodeCoord = (JSONArray) jsonObj_coord.get(node);
 
@@ -78,20 +78,20 @@ public class main {
 					double cost = Double.valueOf(costStr);
 
 					String dest = connectedNodes.get(j).toString();
-					
+
 					// Creating edges in the graph
 					graph.addEdge(String.valueOf(i), dest, distance, cost);
 				}
 
 			}
-			
+
 			// Running the programs
-			
+
 			// UCS
 			System.out.println("Part A:");
 			parta.partA(start, target, graph, jsonObj);
 			System.out.println("\n");
-			
+
 			// UCS with energy constraint
 			System.out.println("Part B:");
 			partb.partB(start, target, graph, jsonObj);
