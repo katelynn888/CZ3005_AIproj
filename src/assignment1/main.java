@@ -1,4 +1,4 @@
-package parta;
+package assignment1;
 
 import java.io.FileReader;
 import java.io.IOException;
