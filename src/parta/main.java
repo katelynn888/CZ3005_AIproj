@@ -13,6 +13,8 @@ public class main {
 	public static void main(String[] args) { 
 		
 		Graph graph = new Graph();
+		final String target = "50";
+		
 	    	
 			// reading map network file & creating a graph
 			String fileG = "G.json";
@@ -33,10 +35,32 @@ public class main {
 	            JSONObject jsonObj_coord = (JSONObject) coordObj; //coord
 	            JSONObject jsonObj_cost = (JSONObject) costObj; //cost
 	            
+	            JSONArray targetCoordJson  = (JSONArray) jsonObj_coord.get(target);
+                
+                String x_str = targetCoordJson.get(0).toString();
+                int targetX = Integer.valueOf(x_str);
+                
+                String y_str = targetCoordJson.get(1).toString();
+                int targetY = Integer.valueOf(y_str);
+                
+                int[] targetCoord = {targetX, targetY};
+                
+	            
 	            for (int i=1; i<= jsonObj_coord.size(); i++) {
 	            	
 	            	String node = String.format("%d", i);
 	            	JSONArray connectedNodes = (JSONArray) jsonObj.get(node);
+	            	JSONArray nodeCoord  = (JSONArray) jsonObj_coord.get(node);
+	                
+	                String xStr = nodeCoord.get(0).toString();
+	                int x = Integer.valueOf(xStr);
+	                
+	                String yStr = nodeCoord.get(1).toString();
+	                int y = Integer.valueOf(yStr);
+	                
+	                int[] curCoord = {x,y};
+	            	
+	            	graph.calculateHeuristic(node, target, curCoord, targetCoord);
 	                
 	                for (int j=0; j < connectedNodes.size(); j++) {
 	                	String connection = i + "," + connectedNodes.get(j);  
@@ -52,10 +76,13 @@ public class main {
 	                }
 	                
 	            }
-	            //System.out.println("Part A :");
-	            //parta.partA("1", "50", graph, jsonObj);
-	            //System.out.println("Part B :");
-	            //partb.partB("1", "50", graph, jsonObj);
+	            System.out.println("Part A:");
+	            parta.partA("1", "50", graph, jsonObj);
+	            
+	            System.out.println("Part B:");
+	            partb.partB("1", "50", graph, jsonObj);
+	            
+	            System.out.println("Part C:");
 	            partc.partC("1", "50", graph, jsonObj);
 	            
 	        } catch (IOException e) {

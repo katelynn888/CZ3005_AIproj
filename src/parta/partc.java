@@ -1,10 +1,5 @@
 package parta;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Set;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -31,13 +26,19 @@ public class partc {
 		Hashtable<String, String> prevNode = new Hashtable<String, String>();
 		prevNode.put(start, start);
 		
-		Double totalCost = 0.0;
+//		Double totalCost = 0.0;
 		
 		while (unvisited.size() > 0) {
-			String curNode = start;
-			totalCost = pathCost.get(curNode) + graph.getHeuristic().get(curNode);
+			String curNode = "";
+//			totalCost = pathCost.get(curNode) + graph.getHeuristic().get(curNode);
 			for (String node : unvisited) {
-				if (curNode == "" || pathCost.get(node) + graph.getHeuristic().get(node) < totalCost) {
+				if (curNode.equals("") || pathCost.get(node) + graph.getHeuristic().get(node) < pathCost.get(curNode) + graph.getHeuristic().get(curNode)) {
+					curNode = node;
+				}
+			}
+			
+			for (String node : unvisited) {
+				if (curNode == "" || pathCost.get(node) < pathCost.get(curNode)) {
 					curNode = node;
 				}
 			}
@@ -62,28 +63,29 @@ public class partc {
 				System.out.print("Shortest path: ");
 				
 	            for (String i : path) {
-	            	if (i != end) {
-	            		System.out.print(i + "->");
+	            	if (i.equals(end)) {
+	            		System.out.print(i);
 	            	}
-	            	else System.out.print(i);
+	            	else System.out.print(i + "->");
 	            }
 	            System.out.println();    
 	            System.out.println("Shortest distance: " + shortestDist);
 	            System.out.println("Total energy cost: " + totalEnergy);
 	            return;
+				
 			}
 			
 			JSONArray connectedNodes = (JSONArray) jsonObj.get(curNode);
 			
 			for (Object node : connectedNodes) {
 				String nodeStr = node.toString();
-				totalEnergy = energyCost.get(nodeStr); //cummulative energy cost for current node
-				if (!unvisited.contains(nodeStr) && !visited.contains(nodeStr) && totalEnergy < 287932) {
-					
+				
+				if (!unvisited.contains(nodeStr) && !visited.contains(nodeStr)) {
+				
 					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
 					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
+					energyCost.put(nodeStr, cumulatedEnergy); //dont have this
 					
-					energyCost.put(nodeStr, cumulatedEnergy);
 					if (cumulatedEnergy>energy_budget) {
 						continue;
 					}
@@ -91,17 +93,20 @@ public class partc {
 					prevNode.put(nodeStr, curNode);
 					pathCost.put(nodeStr, cumulatedDist);
 					
+					
 				} 
 				else {
 					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
 					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
-					if (pathCost.get(nodeStr) > cumulatedDist && totalEnergy < 287932) {
+					if (pathCost.get(nodeStr) > cumulatedDist) {
 						pathCost.put(nodeStr, cumulatedDist);
 						energyCost.put(nodeStr, cumulatedEnergy);
 						prevNode.put(nodeStr, curNode);
-						if (cumulatedEnergy>energy_budget) {
+						
+						if (cumulatedEnergy> energy_budget) {
 							continue;
 						}
+						
 						if (visited.contains(nodeStr)) {
 							visited.remove(nodeStr);
 							unvisited.add(nodeStr);
@@ -109,11 +114,15 @@ public class partc {
 					}
 				}
 			}
+	            
 
 			// add current node to visited & remove from unvisited
 	        unvisited.remove(curNode);
-	        visited.add(curNode);	
+	        visited.add(curNode);
+			
 		}
-		
+
+		System.out.println("No path found");
+		return;
 	}
 }
