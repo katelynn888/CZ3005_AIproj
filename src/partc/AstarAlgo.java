@@ -15,7 +15,7 @@ public class AstarAlgo {
 	    PriorityQueue<Node> openList = new PriorityQueue<>();
 	    
 	    start.f = start.g + start.calculateHeuristic(target);
-	    openList.add(start);
+	    openList.add(start); //unvisited
 
 	    while(!openList.isEmpty()){
 	        Node n = openList.peek();
