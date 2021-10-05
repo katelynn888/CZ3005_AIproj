@@ -26,11 +26,8 @@ public class partc {
 		Hashtable<String, String> prevNode = new Hashtable<String, String>();
 		prevNode.put(start, start);
 		
-//		Double totalCost = 0.0;
-		
 		while (unvisited.size() > 0) {
 			String curNode = "";
-//			totalCost = pathCost.get(curNode) + graph.getHeuristic().get(curNode);
 			for (String node : unvisited) {
 				if (curNode.equals("") || pathCost.get(node) + graph.getHeuristic().get(node) < pathCost.get(curNode) + graph.getHeuristic().get(curNode)) {
 					curNode = node;

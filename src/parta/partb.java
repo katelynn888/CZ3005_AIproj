@@ -30,7 +30,7 @@ public class partb {
 			String curNode = "";
 			
 			for (String node : unvisited) {
-				if (curNode == "" || pathCost.get(node) < pathCost.get(curNode)) {
+				if (curNode.equals("") || pathCost.get(node) < pathCost.get(curNode)) {
 					curNode = node;
 				}
 			}
