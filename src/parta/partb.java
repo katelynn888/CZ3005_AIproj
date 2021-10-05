@@ -55,10 +55,10 @@ public class partb {
 				System.out.print("Shortest path: ");
 				
 	            for (String i : path) {
-	            	if (i != end) {
-	            		System.out.print(i + "->");
+	            	if (i.equals(end)) {
+	            		System.out.print(i);
 	            	}
-	            	else System.out.print(i);
+	            	else System.out.print(i + "->");
 	            }
 	            System.out.println();    
 	            System.out.println("Shortest distance: " + shortestDist);
@@ -73,11 +73,7 @@ public class partb {
 				String nodeStr = node.toString();
 				
 				if (!unvisited.contains(nodeStr) && !visited.contains(nodeStr)) {
-					
-					//System.out.println(nodeStr +" -> " + curNode);
-					//System.out.println(energyCost.get(curNode));
-					//System.out.println(graph.getCosts().get(nodeStr+","+curNode));
-//					System.out.println(graph.getCosts().get("1357,1363"));
+				
 					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
 					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
 					energyCost.put(nodeStr, cumulatedEnergy); //dont have this
@@ -117,8 +113,7 @@ public class partb {
 	        visited.add(curNode);
 			
 		}
-		
-		//System.out.println(graph.getCosts().get("1356,1276"));
+
 		System.out.println("No path found");
 		return;
 	}

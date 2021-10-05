@@ -54,10 +54,10 @@ public class parta {
 				System.out.print("Shortest path: ");
 				
 	            for (String i : path) {
-	            	if (i != end) {
-	            		System.out.print(i + "->");
+	            	if (i.equals(end)) {
+	            		System.out.print(i);
 	            	}
-	            	else System.out.print(i);
+	            	else System.out.print(i + "->");
 	            }
 	            System.out.println();    
 	            System.out.println("Shortest distance: " + shortestDist);
