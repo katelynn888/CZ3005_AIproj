@@ -46,8 +46,8 @@ public class partc {
 		while (unvisited.size() > 0) {
 			String curNode = "";
 			
-			// If evaluation function of node is lesser than the current node, we assign node as the new current node
-			// evaluation function = cumulative distance between node and start node + straight line distance from node to target node
+			// If cost function of node is lesser than the current node, we assign node as the new current node
+			// cost function = cumulative distance between node and start node + straight line distance from node to target node
 			for (String node : unvisited) {
 				if (curNode.equals("") || pathCost.get(node) + graph.getHeuristic().get(node) < pathCost.get(curNode) + graph.getHeuristic().get(curNode)) {
 					curNode = node;
@@ -105,7 +105,7 @@ public class partc {
 					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
 					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
 					
-					// Only continue checking the node if the cumulated ene
+					// cumulated energy exceeds the energy_budget, it skips the current iteration and continues on to the next iteration in the for loop.
 					if (cumulatedEnergy>energy_budget) {
 						continue;
 					}
@@ -136,6 +136,7 @@ public class partc {
 						energyCost.put(nodeStr, cumulatedEnergy);
 						prevNode.put(nodeStr, curNode);
 						
+						// cumulated energy exceeds the energy_budget, it skips the current iteration and continues on to the next iteration in the for loop.
 						if (cumulatedEnergy> energy_budget) {
 							continue;
 						}
