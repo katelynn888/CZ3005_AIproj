@@ -63,7 +63,6 @@ public class parta {
 	            System.out.println("Shortest distance: " + shortestDist);
 	            System.out.println("Total energy cost: " + totalEnergy);
 	            return;
-				
 			}
 			
 			JSONArray connectedNodes = (JSONArray) jsonObj.get(curNode);
@@ -73,12 +72,6 @@ public class parta {
 				
 				if (!unvisited.contains(nodeStr) && !visited.contains(nodeStr)) {
 					
-					//System.out.println(nodeStr +" -> " + curNode);
-					//System.out.println(energyCost.get(curNode));
-					//System.out.println(graph.getCosts().get(nodeStr+","+curNode));
-//					System.out.println(graph.getCosts().get("1357,1363"));
-					
-					
 					Double cumulatedEnergy = energyCost.get(curNode) + graph.getCosts().get(curNode+","+nodeStr);
 					Double cumulatedDist = pathCost.get(curNode) + graph.getDistance().get(curNode+","+nodeStr);
 					
@@ -86,7 +79,6 @@ public class parta {
 					unvisited.add(nodeStr);
 					prevNode.put(nodeStr, curNode);
 					pathCost.put(nodeStr, cumulatedDist);
-					
 					
 				} 
 				else {
@@ -104,15 +96,12 @@ public class parta {
 					}
 				}
 			}
-	            
 
 			// add current node to visited & remove from unvisited
 	        unvisited.remove(curNode);
-	        visited.add(curNode);
-			
+	        visited.add(curNode);	
 		}
 		
-		//System.out.println(graph.getCosts().get("1356,1276"));
 		System.out.println("No path found");
 		return;
 	}

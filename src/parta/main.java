@@ -36,30 +36,10 @@ public class main {
 	            JSONObject jsonObj_coord = (JSONObject) coordObj; //coord
 	            JSONObject jsonObj_cost = (JSONObject) costObj; //cost
 	            
-//	            int counter = jsonObj_dist.size();
-//	            
-//	            Iterator<String> keys = jsonObj_dist.keySet().iterator();
-//	            
-//	            while(keys.hasNext()) {
-//	                String key = keys.next();
-//	                System.out.println(key);
-//	                
-//	                if (counter % 2 == 0) {
-//	                	String[] connection = key.split(",");
-//	                	double distance = Double.valueOf(jsonObj_dist.get(key).toString());
-//	                	double cost = Double.valueOf(jsonObj_cost.get(key).toString());
-//	                	
-//	                	graph.addEdge(connection[0], connection[1], distance, cost);
-//	                }
-//	                counter --;
-//	                
-//	            }
-//	            
 	            for (int i=1; i<= jsonObj_coord.size(); i++) {
 	            	
 	            	String node = String.format("%d", i);
 	            	JSONArray connectedNodes = (JSONArray) jsonObj.get(node);
-	            	
 	                
 	                for (int j=0; j < connectedNodes.size(); j++) {
 	                	String connection = i + "," + connectedNodes.get(j);  
@@ -70,17 +50,11 @@ public class main {
 	                	double cost = Double.valueOf(costStr);
 	                	
 	                	String dest = connectedNodes.get(j).toString();   
-	                	
-	                	
-//	                	System.out.println(connection + " " + distance);
-	                	graph.addEdge(String.valueOf(i), dest, distance, cost);
-	  
 
+	                	graph.addEdge(String.valueOf(i), dest, distance, cost);
 	                }
 	                
 	            }
-	            
-	            //System.out.println(graph.getEdges().get(1));
 	            
 	            parta.partA("1", "50", graph, jsonObj);
 	            
@@ -89,11 +63,5 @@ public class main {
 	        } catch (ParseException e) {
 	            e.printStackTrace();
 	        }
-			
-			
-			
-	
-	       
-	        
 	    }
 }
